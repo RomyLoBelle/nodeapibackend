@@ -1,14 +1,16 @@
 # EasyTrip Automator — projectdocumentatie voor Claude
 
-> **Lees ook `docs/HANDOVER.md`** — het levende handover-document met per sessie
-> wát er veranderd is en wat de open punten zijn.
+> **Lees ook de map `docs/handover/`** (nieuwste bestand = hoogste naam) — daar
+> staat per sessie één eigen bestand met wát er veranderd is en de open punten.
+> (`docs/HANDOVER.md` is enkel nog archief van vóór deze conventie.)
 
 ## 🚨 Regel die ALTIJD geldt: handover bijwerken
 
-**`docs/HANDOVER.md` MOET in elk gesprek actueel gehouden worden. Zodra er iets
-naar `main` gaat (hier deployt elke commit op `main` direct via Vercel), wordt
-EERST de uitleg in de handover gegeven — niet achteraf.** Zo kan een volgend
-gesprek verder als de chatgeschiedenis verdwijnt.
+**De handover MOET in elk gesprek actueel gehouden worden via een eigen bestand
+per sessie in `docs/handover/`. Zodra er iets naar `main` gaat (hier deployt elke
+commit op `main` direct via Vercel), wordt EERST de uitleg in je eigen
+handover-bestand gegeven — niet achteraf.** Zo kan een volgend gesprek verder als
+de chatgeschiedenis verdwijnt.
 
 **Conventie — ÉÉN BESTAND PER SESSIE (geen gedeeld bestand → nooit meer conflict):**
 - Schrijf je handover naar een **eigen, nieuw bestand**:
@@ -215,7 +217,7 @@ git push -u origin <feature-branch>
   feature-branch `claude/<korte-titel>`. **Splits NIET** in meerdere branches/PR's
   per deeltaak of "per gat" — dat kost onnodig veel rebasen, hermergen en controle.
   Eén onderdeel = één branch, ook als het meerdere bestanden of stappen raakt.
-- **Direct mergen zodra het klaar/getest is** en `docs/HANDOVER.md` bijgewerkt is:
+- **Direct mergen zodra het klaar/getest is** en je handover-bestand in `docs/handover/` geschreven is:
   meteen squash-mergen naar `main` (Vercel deployt elke commit op `main` automatisch).
   Niet wachten, niet pollen, geen lange auto-merge-lus.
 - **Vaste volgorde vóór de merge:**
