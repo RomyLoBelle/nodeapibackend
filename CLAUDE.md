@@ -14,7 +14,7 @@ de chatgeschiedenis verdwijnt.
 
 **Conventie — ÉÉN BESTAND PER SESSIE (geen gedeeld bestand → nooit meer conflict):**
 - Schrijf je handover naar een **eigen, nieuw bestand**:
-  `docs/handover/<YYYY-MM-DD-HHMM>-<korte-titel>.md` (tijd in UTC): wát, in welke
+  `docs/handover/<YYYY-MM-DD-HHMM>-<korte-titel>.md` (datum + tijd in Amsterdamse tijd): wát, in welke
   bestanden, evt. env-vars.
 - **Bewerk NOOIT een bestaand handover-bestand.** Twee sessies raken zo nooit
   dezelfde regel/bestand → een PR voegt alleen een **nieuw** bestand toe, en twee
