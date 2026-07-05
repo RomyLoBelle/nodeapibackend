@@ -8,7 +8,7 @@ ontstaat er **nooit** een merge-conflict.
 ```
 docs/handover/<YYYY-MM-DD-HHMM>-<korte-titel>.md
 ```
-Tijd in **UTC**. Hoogste bestandsnaam = nieuwste sessie.
+Tijd in **Amsterdamse tijd**. Hoogste bestandsnaam = nieuwste sessie.
 
 ## Lezen
 Sorteer aflopend op bestandsnaam, nieuwste eerst. Deze map ís de log.
