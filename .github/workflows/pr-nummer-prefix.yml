@@ -1,0 +1,46 @@
+name: PR-nummer vooraan de titel
+
+# Zet automatisch "#<nr> — " vóór de PR-titel. Samen met de repo-instelling
+# "squash = Pull request title" krijgt ELKE deploy op main het nummer vooraan,
+# zonder dat een sessie handmatig hoeft te amenden/force-pushen.
+#
+# Idempotent: draait 'ie op zijn eigen title-edit, dan staat het nummer er al
+# → guard stopt direct (geen loop).
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  prefix:
+    runs-on: ubuntu-latest
+    # Alleen voor PR's uit dezelfde repo (fork-PR's krijgen een read-only token).
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const num = pr.number;
+            const title = pr.title ?? "";
+            const prefix = `#${num} — `;
+
+            // Al correct geprefixt met dit exacte nummer? Klaar.
+            if (title.startsWith(prefix)) return;
+
+            // Strip een eventueel al aanwezig "#<willekeurig nr> — " (bv. fout
+            // nummer of GitHub's eigen "(#nr)" achteraan laten we met rust).
+            const base = title.replace(/^#\d+\s+—\s+/, "");
+            const newTitle = prefix + base;
+            if (newTitle === title) return;
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: num,
+              title: newTitle,
+            });
+            core.info(`PR-titel gezet op: ${newTitle}`);
