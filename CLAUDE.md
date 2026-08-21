@@ -230,8 +230,22 @@ git push -u origin <feature-branch>
   aan referentielijsten/rederij/terminal-logica met datarisico, destructieve acties,
   of ambigue/buiten-scope wijzigingen. Leg die voor, wacht op "ja", merge daarna mee.
 
-**Repo-instellingen (admin, GitHub UI):** *Pull Requests* → **Allow auto-merge** ✅ +
+**PR-nummer vooraan élke deploytitel (afspraak sinds 2026-08-21, zelfde als
+AutomatingHQ).** Vercel toont de git-commit-subject als deploytitel; zo krijgt
+elke deploy (preview én productie) het PR-nummer vooraan:
+1. De workflow **`.github/workflows/pr-nummer-prefix.yml`** zet bij aanmaken/
+   bewerken van een PR automatisch `#<nr> — ` vóór de PR-titel (idempotent).
+2. **Open de PR direct na je éérste push** van de sessie (draft mag) — dan is
+   het nummer meteen bekend. Niet wachten tot het werk af is.
+3. **Begin daarna élke commit-subject met `#<nr> — `** — zo toont elke
+   preview-deploy het nummer. Alleen de allereerste push heeft nog geen nummer;
+   houd die klein en ga nooit amenden/force-pushen om het toe te voegen.
+4. Zet de PR pas op ready + auto-merge als het werk af is en de handover
+   bijgewerkt is.
+
+**Repo-instellingen (admin, GitHub UI):** *Pull Requests* → **Allow squash
+merging** → **Default commit message = "Pull request title"** (⚠️ vereist voor
+het nummer op de productie-deploy); **Allow auto-merge** ✅ +
 **Automatically delete head branches** ✅; *Branch protection* voor `main` →
-**Require branches to be up to date before merging** (+ een test/build-check zodra die
-er is). ⚠️ Deze repo heeft nog **geen GitHub Actions-CI** — zonder vereiste check landt
-een merge direct bij mergeable; overweeg de **Vercel-deploycheck** als poort.
+**Require branches to be up to date before merging** + de check uit
+`.github/workflows/ci.yml` als vereiste check.
