@@ -4,6 +4,12 @@ on:
   pull_request:
     branches: [main]
 
+# Annuleer een lopende run bij een nieuwe commit op dezelfde PR/branch —
+# scheelt GitHub Actions-minuten (geen stapel verouderde runs).
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     name: Node install + syntax check
