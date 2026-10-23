@@ -15,7 +15,10 @@
 ## Wat er veranderde
 
 - Romy heeft op 23-10 de GitHub-app van Vercel bij de organisatie `RomyLoBelle`
-  nagekeken en ingesteld (repository access).
+  nagekeken (All repositories). Dat alleen hielp niet: de eerste push op deze PR
+  kreeg geen reactie van Vercel.
+- Daarna in Vercel → nodeapibackend → Settings → Git: **Disconnect** en opnieuw
+  **Connect** met het GitHub-account `RomyLoBelle` (niet `RBlancoSaa`).
 - Dit bestand is de eerste wijziging daarna: de PR test of Vercel weer reageert
   (preview + bot-reactie), en de merge rolt `main` uit, inclusief #39.
 - Geen code, geen database, geen env-vars.
