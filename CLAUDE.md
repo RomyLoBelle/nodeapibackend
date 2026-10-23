@@ -23,6 +23,22 @@ de chatgeschiedenis verdwijnt.
   De map `docs/handover/` (aflopend gesorteerd) ís de log.
 - Open punten horen binnen je eigen sessie-bestand, niet in een centrale lijst.
 
+## 🚨 Afspraken met Romy (23-10-2026) — gelden in alle drie de repo's
+
+Vastgelegd na de doorlichting van 23-10-2026. Dezelfde tekst staat in RomyHQ,
+AutomatingHQ en nodeapibackend: pas je er één aan, doe het dan in alle drie.
+
+| Afspraak | Wat het betekent |
+|---|---|
+| **Kosten** | Niets dat geld kost zonder Romy's goedkeuring vooraf: geen nieuwe betaalde dienst, geen hoger abonnement, geen betaalde API, geen extra gebruikstegoed. Vraag het mét het bedrag. Bedragen alleen uit een factuur of een geopende prijspagina, anders "onbekend". Het kostenoverzicht staat in AutomatingHQ `docs/KOSTEN.md`. |
+| **Verbruik** | Agents en workflows gebruiken samen maximaal 80% van Romy's 5-uursvenster; vanaf 75% start je niets nieuws. Romy moet zelf altijd nog met Claude kunnen werken. Zwaar werk 's nachts. |
+| **Vaste code boven AI** | Nieuwe functies bouw je met vaste, voorspelbare code. Bestaande AI-aanroepen vervang je door code waar dat kan. AI alleen waar code het echt niet kan: pdf's en foto's uitlezen (klanten betalen daar extra voor). |
+| **Zelfstandig** | Ligt er een samen gemaakt plan, voer het dan zelf uit zonder per stap te vragen. Grote AHQ-wijzigingen eerst overleggen. Een lek: direct repareren, daarna melden. |
+| **Migraties** | De toolvraag voor `apply_migration` staat uit (RomyHQ en AHQ, `.claude/settings.json`). Een migratie uit een afgesproken plan of voor een lek voer je zonder extra vraag uit; elke databasewijziging staat in je handover-bestand. Een migratie buiten zo'n plan leg je eerst voor. |
+| **Updates** | Eén samenvatting per dag. Meteen een melding alleen bij iets urgents (een lek, een app die plat ligt). Wat Romy moet doen, gaat in de RomyHQ-takenlijst. |
+| **Zelfverbetering** | Claude mag na een les zijn eigen regels (CLAUDE.md), skills en hooks bijwerken. Noem het in de dagelijkse samenvatting. |
+| **Onderwerp** | Breng verhuizen naar het buitenland niet zelf ter sprake, ook niet in plannen of samenvattingen. Alleen als Romy er zelf over begint. |
+
 ## Wat doet dit systeem
 
 Node.js backend op Vercel die ongelezen Gmail-emails ophaalt, PDF/XLSX transportopdrachten parseert van vaste klanten, `.easy` XML-bestanden genereert voor EasyTrip (Microsoft Access transport-software), en die bestanden per email verstuurt naar `easybestanden@tiarotransport.nl`.
