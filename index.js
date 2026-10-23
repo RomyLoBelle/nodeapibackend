@@ -2,13 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import parsePdfHandler from './api/parse-uploaded-pdf.js';
 import verwerkPdfUploadHandler from './api/verwerk-pdf-upload.js';
-import generateEasyHandler from './api/generate-easy-files.js';
-import uploadFromInboxHandler from './api/upload-from-inbox.js';
-import processSteinwegQueueHandler from './api/process-steinweg-queue.js';
-import testSteinwegHandler from './api/test-steinweg.js';
-import testGmailAuthHandler from './api/test-gmail-auth.js';
-import testSendEmailHandler from './api/test-send-email.js';
-import inspectPdfHandler from './api/inspect-pdf.js';
 import dashboardHandler from './api/dashboard.js';
 import prijsafsprakenHandler from './api/prijsafspraken.js';
 import tariefImportHandler from './api/tarief-import.js';
@@ -103,14 +96,11 @@ function escapeHtml(s) {
 // ─── API routes ──────────────────────────────────────────────────────────────
 app.post('/api/parse-uploaded-pdf', parsePdfHandler);
 app.post('/api/verwerk-pdf-upload', verwerkPdfUploadHandler);
-app.post('/api/generate-easy-files', generateEasyHandler);
-app.get('/api/upload-from-inbox', uploadFromInboxHandler);
-app.get('/api/process-steinweg-queue', processSteinwegQueueHandler);
-app.get('/api/test-steinweg', testSteinwegHandler);
-app.post('/api/test-steinweg', testSteinwegHandler);
-app.get('/api/test-gmail-auth', testGmailAuthHandler);
-app.get('/api/test-send-email', testSendEmailHandler);
-app.get('/api/inspect-pdf', inspectPdfHandler);
+// Weggehaald 23-10-2026 (lek): test-send-email, test-gmail-auth, test-steinweg,
+// inspect-pdf, upload-from-inbox, process-steinweg-queue en generate-easy-files
+// stonden open zonder inlog. Via test-send-email kon iedereen mail versturen
+// vanuit de Gmail van Tiaro, via upload-from-inbox de Tiaro-inbox laten
+// leeglezen. De mailverwerking zit sinds 15-05-2026 in de AHQ-harvester.
 app.get('/api/prijsafspraken', prijsafsprakenHandler);
 app.post('/api/prijsafspraken', prijsafsprakenHandler);
 app.post('/api/tarief-import', tariefImportHandler);
