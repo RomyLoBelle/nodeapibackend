@@ -213,6 +213,16 @@ SUPABASE_LIST_PUBLIC_URL (publieke URL van de referentielijsten bucket)
 3. Geen auto-create van terminals
 4. **Rederij MOET uit de lijst komen** — bij mislukking leegmaken, nooit raw doorsturen
 5. Wijzigingen gaan via de feature-branch → merge naar `main` (Vercel deployt automatisch). Zie "Git workflow".
+6. **Migraties en de Supabase-connector.** Een `drop`, `delete` of `truncate` in de SQL-tekst
+   (ook binnen een functie) laat de connector om Romy's bevestiging vragen. **Die vraag komt in een
+   cloud-sessie nooit bij Romy aan** en verloopt na 60 s (24-10-2026: drie keer in AHQ). Daarom:
+   (1) schrijf zonder `drop`/`delete`/`truncate` waar dat kan (`create or replace`, `update`, een
+   status in plaats van weghalen), met losse statements zonder `begin; … commit;`; (2) kan het
+   echt niet zonder, probeer het dan **niet** via de connector, maar lever meteen één `.sql`-bestand
+   (via SendUserFile) met de link naar de SQL Editor van het juiste project en de stappen
+   "plakken → Run → 'Run this query' bij de waarschuwing → zeg gedaan"; (3) controleer daarna
+   zelf met `execute_sql` en test met een `do $$ … raise exception $$`-blok (draait alles terug).
+   Dezelfde regel staat in RomyHQ en AutomatingHQ.
 
 ---
 
